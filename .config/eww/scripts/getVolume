@@ -1,0 +1,67 @@
+#!/bin/bash
+
+vol=$(amixer get Master | grep % | awk '{print $5}' | sed -e 's/\[//' -e 's/\]//' | head -n 1)
+
+percentage() {
+	local val=$(echo $1 | tr '%' ' ' | awk '{print $1}')
+	local icon1=$2
+	local icon2=$3
+	local icon3=$4
+	local icon4=$5
+	if [ "$val" -le 25 ]; then
+		echo $icon1
+	elif [ "$val" -le 50 ]; then
+		echo $icon2
+	elif [ "$val" -le 75 ]; then
+		echo $icon3
+	else
+		echo $icon4
+	fi
+}
+
+is_muted() {
+	pactl get-sink-mute @DEFAULT_SINK@ | awk '{ print $2 }'
+}
+
+get_percentage() {
+	amixer get Master | grep % | awk '{print $5}' | sed -e 's/\[//' -e 's/\]//' | head -n 1
+}
+
+get_icon() {
+	local muted=$(is_muted)
+	if [[ $muted == 'yes' ]]; then
+		echo "󰝟"
+	else
+		echo $(percentage "$vol" "" "" "󰕾" "")
+	fi
+}
+
+get_class() {
+	local muted=$(is_muted)
+	if [[ $muted == 'yes' ]]; then
+		echo "muted"
+	else
+		echo "not-muted"
+	fi
+}
+
+get_vol() {
+	local percent=$(get_percentage)
+	echo $percent | tr -d '%'
+}
+
+toggle_mute() {
+	amixer -D pipewire set Master 1+ toggle
+}
+
+if [[ $1 == "icon" ]]; then
+	get_icon
+elif [[ $1 == "class" ]]; then
+	get_class
+elif [[ $1 == "percentage" ]]; then
+	get_percentage
+elif [[ $1 == "vol" ]]; then
+	get_vol
+elif [[ $1 == "toggle_mute" ]]; then
+	toggle_mute
+fi

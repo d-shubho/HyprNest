@@ -1,0 +1,87 @@
+.calendar{
+  border-radius: 15px;
+  border: 1px solid white;
+}
+.timebox {
+	color: @color7;
+	margin: 30px 0px;
+}
+.time-container { 
+ 
+}
+.time-label {
+  padding: 0.5rem;
+  margin-right: 40;
+  margin-left: 40;
+  margin-bottom: 10;
+	font-family: "Monaspace Krypton ExtraBold", "JetBrainsMono Nerd Font";;
+	font-size: 60px;
+  padding: 10;
+  border-radius: 30px;
+  border-width: 1px 2px 8px 2px;
+  border-style: solid;
+  border-color: @color12;
+ }
+.date-label {
+  padding: 0.5rem;
+  margin-top: 15;
+  border-radius: 15px;
+  border-width: 1px 2px 6px 2px;
+  border-style: solid;
+  border-color: @color12;
+  margin-right: 50;
+  margin-left: 50;
+}
+.timebox .date-container {
+  font-family: "JetBrainsMono NF";
+	font-size: 20px;
+	margin-top: 2px;
+}
+.cal-box {
+	font-family: JetBrainsMono NF;
+	background-color: @bg;
+  font-size: 18px;
+	border-radius: 100px;
+  border-width: 1px 1px 6px 1px;
+  border-style: solid;
+	border-color: @bg-alt;
+  box-shadow: 0 0 15px black;
+	padding: 2rem;
+	background-color: @bg;
+	margin: 0px 12px 12px 12px;
+}
+.cal {
+	background-color: inherit;
+	border: 0px;
+}
+.cal.highlight {
+  padding: 10rem;
+  background: @color3;
+  color: @bg;
+  border-radius: 6px;
+}
+
+calendar{
+  color: @color6;
+}
+calendar:selected {
+	color:@color11;
+}
+calendar.header {
+  color:@color11;
+	font-weight: bold;
+}
+calendar.button {
+  padding: 5px;
+  border: 2px solid yellow;
+  border-radius: 5px;
+  margin: 5px;
+	color:@color11;
+}
+calendar.highlight {
+	color: @color3;
+	font-weight: bold;
+}
+calendar:indeterminate {
+	color: @bg;
+}

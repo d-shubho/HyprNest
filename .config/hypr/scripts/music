@@ -1,0 +1,23 @@
+#!/bin/bash
+
+status="$(playerctl -p spotify,vlc status 2>/dev/null)"
+song_title="$(playerctl -p spotify,vlc metadata title 2>/dev/null)"
+song_artist="$(playerctl -p spotify,vlc metadata artist 2>/dev/null)"
+cover_art="$HOME/hello.png"
+wall_path="$(swww query | awk -F 'image: ' '{print $2}')" # query current wallpaper with swww
+
+spotify_cover_art="$(playerctl -p spotify metadata mpris:artUrl 2>/dev/null)"
+vlc_cover_art="$(playerctl -p vlc metadata mpris:artUrl 2>/dev/null)"
+
+if [[ $status ]]; then
+	if [[ $spotify_cover_art ]]; then
+		curl -s "$spotify_cover_art" >$cover_art
+		echo "$cover_art"
+	elif [[ $vlc_cover_art ]]; then
+		curl -s "$vlc_cover_art" >$cover_art
+		echo "$cover_art"
+	fi
+else
+	cp "$wall_path" "$cover_art"
+	echo "$cover_art"
+fi

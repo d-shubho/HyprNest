@@ -1,0 +1,9 @@
+// rosepine
+
+*{
+  bg: #191724;
+  bg-alt: #26233a;
+  fg: #ebbcba;
+
+  background-color: @bg;
+}

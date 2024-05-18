@@ -1,0 +1,23 @@
+#!/bin/bash
+
+status=$(pgrep gammastep)
+
+if [[ $status ]]; then
+	icon="󰛨"
+	class="night-light-on"
+else
+	icon="󰌶"
+	class="night-light-off"
+fi
+
+function toggleNightLight() {
+	[[ -z $status ]] && gammastep -O 3000 || killall gammastep
+}
+
+if [[ $1 == "icon" ]]; then
+	echo $icon
+elif [[ $1 == "class" ]]; then
+	echo $class
+elif [[ $1 == "toggleNightLight" ]]; then
+	toggleNightLight
+fi

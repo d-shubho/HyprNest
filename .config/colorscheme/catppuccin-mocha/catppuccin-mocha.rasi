@@ -1,0 +1,9 @@
+// catppuccin-mocha
+
+*{
+  bg: #1e1e2e;
+  bg-alt: #313244;
+  fg: #cdd6f4;
+
+  background-color: @bg;
+}

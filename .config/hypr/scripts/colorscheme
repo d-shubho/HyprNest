@@ -1,0 +1,23 @@
+#!/bin/bash
+
+eww="$HOME/.local/bin/eww"
+colorschemes=$(ls $HOME/.config/colorscheme/)
+colorscheme_list=""
+
+for value in $colorschemes; do
+	if [[ $value != "current-colorscheme" ]]; then
+		colorscheme_list+="$value\n"
+	fi
+done
+
+val=$(printf "$colorscheme_list" | rofi -dmenu -no-custom -p '  Colorschemes')
+
+if [[ $val ]]; then
+	cp "$HOME/.config/colorscheme/${val}/${val}.css" $HOME/.config/colorscheme/current-colorscheme/current-colorscheme.css 2>/dev/null
+	cp "$HOME/.config/colorscheme/${val}/${val}.rasi" $HOME/.config/colorscheme/current-colorscheme/current-colorscheme.rasi 2>/dev/null
+	cp "$HOME/.config/colorscheme/${val}/${val}-kitty.conf" $HOME/.config/colorscheme/current-colorscheme/current-colorscheme-kitty.conf 2>/dev/null
+	cp "$HOME/.config/colorscheme/${val}/${val}-hypr.conf" $HOME/.config/colorscheme/current-colorscheme/current-colorscheme-hypr.conf 2>/dev/null
+	$eww reload &
+	pkill waybar && waybar &
+	pkill -USR1 -f kitty && echo "line execed"
+fi

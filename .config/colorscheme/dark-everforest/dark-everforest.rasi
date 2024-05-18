@@ -1,0 +1,10 @@
+// dark-everforest
+
+*{
+  bg: #1e2326;
+  bg-alt: #272e33;
+  fg: #9da9a0;
+
+
+  background-color: @bg;
+}

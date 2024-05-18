@@ -1,0 +1,45 @@
+(defwindow powermenu
+  :monitor 0
+	:geometry (geometry
+              :x "40%"
+						  :y "20%"
+              :height "10%"
+						  :anchor "top center")
+  (powermenu)
+)
+
+(defwidget powermenu []
+      (box :class "powermenu-layout" :space-evenly false :orientation "v"
+        (box :class "background-img" :style 'background-image: url("${powermenubg_path}")')
+        (label :class "bye" :text "またあとで")
+        (image :class "pfp" :path "./assets/pfp.png" :image-width 140 :image-height 140 )
+        (label :class "powermenu-uptime"  :text " uptime: ${uptime}")
+        (box :class "powermenu-buttons" :orientation "h" :space-evenly true :spacing 10
+          (box :class "logout"
+            (button :class "logout button" :onclick "loginctl kill-user $(whoami)"
+              (label :class "button-label" :text "󰍃")
+            )
+          )
+          (box :class "lock"
+            (button :class "lock button" :onclick "$HOME/.local/bin/eww close powermenu && hyprctl dispatch exec hyprlock"
+              (label :class "button-label" :text  "")
+            )
+          )
+          (box :class "suspend"
+            (button :class "suspend button" :onclick "$HOME/.local/bin/eww close powermenu && systemctl suspend"
+              (label :class "button-label" :text "󰤄")
+            )
+          )
+          (box :class "reboot"
+            (button :class "reboot button" :onclick "reboot"
+              (label :class "button-label" :text "")
+            )
+          )
+          (box :class "poweroff"
+            (button :class "poweroff button" :onclick "poweroff"
+              (label :class "button-label" :text "" )
+            )
+          )
+        )
+      )
+)

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+get_brightness() {
+	((br = $(brightnessctl get) * 100 / $(brightnessctl max)))
+	echo $br
+}
+
+get_icon() {
+	local br=$(get_brightness)
+	if [[ $br -le 15 ]]; then
+		echo "󰃝"
+	elif [[ $br -le 30 ]]; then
+		echo "󰃞"
+	elif [[ $br -le 60 ]]; then
+		echo "󰃟"
+	else
+		echo "󰃠"
+	fi
+}
+
+br_inc() {
+	brightnessctl set 5%+
+	local br=$(get_brightness)
+	icon=$(get_icon)
+	dunstify -h int:value:$br "$icon  Brightness"
+}
+
+br_dec() {
+	brightnessctl set 5%-
+	local br=$(get_brightness)
+	icon=$(get_icon)
+	dunstify -h int:value:$br "$icon  Brightness"
+}
+
+if [[ $1 == br_inc ]]; then
+	br_inc
+fi
+
+if [[ $1 == br_dec ]]; then
+	br_dec
+fi

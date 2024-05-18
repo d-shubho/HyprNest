@@ -1,0 +1,57 @@
+#!/bin/bash
+
+get_volume() {
+	((vol = $(amixer get Master | grep % | awk '{print $5}' | sed -e 's/\[//' -e 's/\]//' -e 's/\%//' | head -n 1)))
+	echo $vol
+}
+
+get_icon() {
+	local vol=$(get_volume)
+	if [[ $vol -le 25 ]]; then
+		echo "󰕿"
+	elif [[ $vol -le 50 ]]; then
+		echo "󰖀"
+	elif [[ $vol -le 75 ]]; then
+		echo "󰕾"
+	else
+		echo ""
+	fi
+}
+
+is_muted() {
+	pactl get-sink-mute @DEFAULT_SINK@ | awk '{ print $2 }'
+}
+vol_inc() {
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+	local vol=$(get_volume)
+	icon=$(get_icon)
+	dunstify -h int:value:$vol "$icon  Volume"
+}
+
+vol_dec() {
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+	local vol=$(get_volume)
+	icon=$(get_icon)
+	dunstify -h int:value:$vol "$icon  Volume"
+}
+
+vol_mute() {
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	local muted=$(is_muted)
+	if [[ $muted == 'yes' ]]; then
+		dunstify "󰝟 Vol Muted"
+	else
+		dunstify "󱄠 Vol Unmuted"
+	fi
+}
+if [[ $1 == vol_inc ]]; then
+	vol_inc
+fi
+
+if [[ $1 == vol_dec ]]; then
+	vol_dec
+fi
+
+if [[ $1 == vol_mute ]]; then
+	vol_mute
+fi

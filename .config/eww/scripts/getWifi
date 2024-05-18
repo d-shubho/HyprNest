@@ -1,0 +1,28 @@
+#!/bin/bash
+
+status=$(nmcli r wifi)
+status_airplane=$(rfkill | awk '{print $4}' | grep "unblocked") # toggleWifi will not work when airplane mode is turned on
+
+if [[ $status == "enabled" ]]; then
+	icon="󰤨 "
+	class="wifi-on"
+else
+	icon="󰤭 "
+	class="wifi-off"
+fi
+
+function toggleWifi() {
+	[[ $status == "enabled" ]] && nmcli r wifi off || (nmcli r wifi on && nmcli dev wifi rescan)
+}
+
+if [[ $1 == "icon" ]]; then
+	echo $icon
+fi
+
+if [[ $1 == "class" ]]; then
+	echo $class
+fi
+
+if [[ $1 == "toggleWifi" ]] && [[ $status_airplane ]]; then
+	toggleWifi
+fi

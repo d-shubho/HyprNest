@@ -1,0 +1,27 @@
+#!/bin/bash
+eww_cache="$HOME/.cache/eww"
+eww_powermenu_bg="$eww_cache/powermenubg.png"
+
+if [[ ! -d $eww_cache ]]; then
+	mkdir -p $eww_cache
+fi
+
+eww_config_path="$HOME/.config/eww"
+wall_path="$(swww query | awk -F 'image: ' '{print $2}')"            # query current wallpaper with swww
+powermenubg_log_file="$eww_cache/powermenubg_log.txt"                   # log file to store last used path of background for powermenu
+fallback_wall_path="$eww_config_path/assets/fallbackPowermenuBg.png" # fallback image if no wallpaper set
+
+[[ -z "$wall_path" ]] && cp "$fallback_wall_path" "$eww_powermenu_bg"
+
+[[ ! -f "$powermenubg_log_file" ]] && touch "$powermenubg_log_file"
+
+powermenubg_log=$(<"$powermenubg_log_file")
+
+# blurring wallpaper with ffmpeg if path inside log file doesn't matches with wall_path
+if [[ "$powermenubg_log" != "$wall_path" ]]; then
+	ffmpeg -i "$wall_path" -vframes 2 -vf "gblur=sigma=40" -update 1 "$eww_powermenu_bg" -y
+	echo "$wall_path" >"$powermenubg_log_file"
+fi
+
+# Now just echo the path
+echo "$eww_powermenu_bg"

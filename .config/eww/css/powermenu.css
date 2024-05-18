@@ -1,0 +1,94 @@
+.powermenu-layout{
+  border-radius: 20px;
+  border: 1px solid @colo1;
+}
+
+.bye {
+  margin: -300px 0 0 0;
+  background: none;
+  font-family: "Source Han Sans JP";
+  font-size: 45px;
+  color: white;
+}
+
+.background-img{
+  border-radius: 40px;
+  border-bottom: 4px solid white;
+  background-size: cover;
+  min-height: 200px;
+  min-width:350px;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.pfp{
+  margin: -75px 0 0 0;
+  background: none;
+}
+
+.powermenu-uptime{
+  font: 18px "JetBrainsMono NF";
+  font-weight : bold;
+  color: @color12;
+  border-radius: 18px;
+  border: 1px solid @color12;
+  border-bottom-width: 6px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  box-shadow: 0 0 15px black;
+  padding: 8px;
+  margin: 30px 50px 40px 50px;
+}
+.powermenu-buttons {
+  margin: 0 25px 25px 25px;
+  border-radius: 25px
+}
+.button-label{
+  all: unset;
+  font: 30px "JetBrainsMono NF";
+  margin: 8px;
+}
+
+.button{
+  all: unset;
+  border-radius: 60px;
+  background: @bg-alt;
+  box-shadow: 0 0 7px black;
+  margin: 10px 0px 10px 5px;
+}
+.logout button{
+  color: @color8;
+}
+.lock button{
+  color: @color9;
+}
+.suspend button{
+  color: @color5;
+}
+.reboot button{
+  color: @color4;
+}
+.poweroff button{
+  color: @color2;
+}
+
+/* Fixing mis-aligment of icons */
+.poweroff button {
+  padding: 0 9px 0 0;
+}
+.lock button{
+  padding: 0 8px 2px 0;
+}
+.reboot button {
+  padding: 1px 3px 0 0;
+}
+
+/* Hover Glow effect */
+.button:hover{
+  background:@color8;
+  color: @bg;
+  box-shadow: 0 0 1px @color12,
+  0 0 5px @color12;
+}
+

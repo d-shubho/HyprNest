@@ -1,0 +1,140 @@
+;; CONTROL-CENTER WIDGET
+(defwindow control-center
+  :monitor 0
+	:geometry (geometry
+            :x "6px"
+						:y "6px"
+						:width "5%"
+						:anchor "top right")
+	(control-center)
+)
+
+(defwidget control-center []
+  (box :class "control-center-layout" :space-evenly false :orientation "v"
+      (user)
+      (actions)
+      (sys-resources)
+      (media-control)
+  )
+)
+
+
+;; USER_INFO
+(defwidget user []
+    (box :class "user" :space-evenly false :orientation "h" :spacing 20
+        (image :class "avatar-img" :path "./assets/pfp.png" :image-width 140 :image-height 140)
+        (box :class "profile-info" :orientation "v" :spacing 10
+            (box  :class "hello-user" :orientation "h" :space-evenly true 
+                (label :class "hello" :yalign 1 :xalign 0  :text "おかえり")
+                (label :class "username" :xalign 0.1 :yalign 0.8 :hexpand true :text "@${username} 󱠡")
+            )
+            (label :class "uptime"  :yalign 0.5 :justify "center"  :text " uptime: ${uptime}")
+        )
+    )
+)
+
+
+;; CONTROLS
+(defwidget actions []
+  (box :class "actions" :space-evenly false :orientation "h"
+    (box :class "sliders" :space-evenly false :orientation "h" :spacing 0
+      (box :class "volume-slider" :orientation "v" :space-evenly false
+        (overlay
+          (scale :orientation "v" :min 0 :max 101 :value vol :onchange "amixer sset Master {}%" :flipped true)
+          (label :class "vol-label " :text "${volume_icon}" :yalign 0.98 :xalign 0.45))
+        )
+      (box :class "brightness-slider" :orientation "v" :space-evenly false
+        (overlay
+          (scale :orientation "v" :min 1 :max 101 :value br :onchange "brightnessctl s {}%" :flipped true)
+          (label :class "br-label" :text "${br_icon}" :yalign 0.93 :xalign 0.45)
+        )
+      )
+    )
+    (box :class "buttons" :orientation "v"
+      (box :class "first-row"
+        (box :class "wifi"
+            (button :class "switch ${wifi_class}" :onclick toggle_wifi
+              (label :class "switch-label" :text "${wifi_icon}")
+            )
+            (button :class "options ${wifi_class}" :onclick "kitty nmtui &"
+              (label :class "options-label" :text "")
+            )
+
+        )
+        (box :class "bluetooth"
+            (button :class "switch ${bluetooth_class}" :onclick toggle_bluetooth
+              (label :class "switch-label" :text "${bluetooth_icon}")
+            )
+            (button :class "options ${bluetooth_class}" :onclick "blueman-manager &"
+              (label :class "options-label" :text "")
+            )
+        )
+        (box :class "airplane-mode"
+            (button :class "switch ${airplane_mode_class}" :onclick toggle_airplane_mode
+              (label :class "switch-label" :text "${airplane_mode_icon}")
+            )
+        )
+      )
+      (box :class "second-row"
+        (box :class "volume"
+            (button :class "switch ${volume_class}" :onclick toggle_mute
+              (label :class "switch-label" :text "${volume_icon}")
+            )
+            (button :class "options ${volume_class}" :onclick "easyeffects &"
+              (label :class "options-label" :text "")
+            )
+        )
+        (box :class "night-light"
+            (button :class "switch ${night_light_class}" :onclick toggle_night_light
+              (label :class "switch-label" :justify "center"  :text "  ${night_light_icon} ")
+            )
+        )
+        (box :class "screenshot"
+            (button :class "switch screenshot-button" :onclick take_ss
+              (label :class "switch-label" :justify "center"  :text "󰆞 ")
+            )
+        )
+
+      )
+    )
+  )
+)
+
+
+;; SYSTEM RESOURCES
+(defwidget sys-resources []
+  (box :class "sys-res-layout" :orientation "h" :spacing 40
+    (circular-progress :class "cpu-usage" :value {round(EWW_CPU.avg, 0)} :thickness 6 :start-at 75
+      (label :class "resource_text" :text "CPU")
+    )
+    (circular-progress :class "memory-usage" :value {round(EWW_RAM.used_mem_perc, 0)} :thickness 6 :start-at 75
+      (label :class "resource_text" :text "MEMORY")
+    )
+    (circular-progress :class "disk-usage" :value {round(EWW_DISK["/"].used_perc, 0)} :thickness 6 :start-at 75
+      (label :class "resource_text" :text "DISK")
+    )
+  )
+)
+
+
+;; MEDIA_INFO
+(defwidget media-control []
+  (box :class "media-layout" :space-evenly true :orientation "h"
+    (box :class "album-cover"
+      (image :style "margin: 0 0 0 -10px" :path "${artUrl}" :image-width 150 :image-height 150)
+    )
+    (box :class "media-info" :orientation "v" :style "margin: 0 0 0 0px"
+      (box :class "song-title"
+        (label :class "song-title-label ${media_class}" :limit-width 10 :justify "center" :text "${song_title}")
+      )
+      (box :class "song-artist"
+        (label :class "song-artist-label ${media_class}" :limit-width 10 :justify "center" :text "${song_artist}")
+      )
+      (box :class "media-buttons"
+          (button :class "previous_icon ${media_class}" :onclick "${previous}" "${previous_icon}")
+          (button :class "play_pause_icon ${media_class}" :onclick "${play_pause}" "${play_pause_icon}")
+          (button :class "next_icon ${media_class}" :onclick "${next}" "${next_icon}")
+        )
+      )
+  )
+)

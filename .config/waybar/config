@@ -1,0 +1,142 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 12,
+    "margin-top": 3,
+    "margin-left": 6,
+    "margin-right": 6,
+    "modules-left": ["custom/launcher", "clock", "hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+        "custom/updates",
+        "custom/separator",
+        "custom/control-center",
+        "custom/separator",
+        "bluetooth",
+        "custom/separator",
+        "network",
+        "custom/separator",
+        "backlight",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "image#pfp"
+    ],
+
+    "custom/launcher": {
+        "on-click": "pkill rofi || rofi -show drun",
+        "format": "",
+        "tooltip": false
+    },
+
+    "clock": {
+        "on-click": "sleep 0.1 && $HOME/.config/waybar/script date",
+        "format": "{:%R  |  %d/%m}",
+    },
+
+     "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+                  "1": "",
+                  "2": "󰈹",
+                  "3": "",
+                  "4": "󰻏",
+                  "5": "󰵼",
+                  "urgent": "",
+        },
+        "persistent_workspaces": { "*": 4 },
+    },
+
+    "custom/updates": {
+        "exec": "(yay -Qua) | wc -l",
+        "interval": 1800,
+        "format": " {}",
+        "on-click": "kitty yay"
+    },
+
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+
+    "custom/control-center": {
+        "on-click": "sleep 0.1 && $HOME/.config/waybar/script control-center",
+        "format" : "",
+        "tooltip": false
+    },
+
+    "bluetooth": {
+        "on-click": "blueman-manager",
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    },
+
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󱞐",
+        "format-disabled": "󰤭  Turned Off",
+        "tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
+        "on-click": "kitty nmtui &"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "min-length": 6
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "on-click": "amixer -D pipewire set Master 1+ toggle",
+        "on-scroll-up": "amixer -D pipewire sset Master 1%+",
+        "on-scroll-down": "amixer -D pipewire sset Master 1%-",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", "󰕾", ""]
+        }
+    },
+
+    "battery": {
+        "states": {
+            "good": 100,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon}󱐋 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "image#pfp": {
+        "path": "/home/shubh/.config/eww/assets/pfp.png",
+        "size": 38,
+        "on-click": "sleep 0.1 && $HOME/.config/waybar/script powermenu",
+    },
+
+}
+

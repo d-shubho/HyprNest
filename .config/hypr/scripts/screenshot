@@ -1,0 +1,17 @@
+#!/bin/bash
+
+time=$(date +%Y-%m-%d_%H:%M:%S)
+dir="$HOME/Pictures/Screenshots"
+file="Screenshot_${time}.png"
+
+# notify
+notify_user() {
+	if [[ -e "$dir/$file" ]]; then
+		dunstify "Saved as ${dir}/${file}"
+	else
+		dunstify "Screenshot Deleted."
+	fi
+}
+# take shots
+cd ${dir} && grim -g "$(slurp)" $file && swayimg ${dir}/$file
+notify_user

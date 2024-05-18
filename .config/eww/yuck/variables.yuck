@@ -1,0 +1,62 @@
+;; DATE VARS
+(defpoll time :interval "1s" "date '+%T'")
+(defpoll weekday :interval "24h" "date '+%A'")
+(defpoll monthday :interval "24h" "date '+%d %b'")
+(defpoll month_year :interval "24h" "date '+%B %Y'")
+(defpoll completeday :interval "1h" "date '+%A, %d %B'")
+
+;; CALENDAR VARS
+(defpoll calendar_day :interval "10h" "date '+%d'")
+(defpoll calendar_month :interval "10h" "date '+%m'")
+(defpoll calendar_year :interval "10h" "date '+%Y'")
+
+;; USER VARS
+(defpoll username :interval "24h" "whoami")
+(defpoll uptime :interval "1m" "uptime -p | awk '{print $2, $3, $4,  $5}' ")
+
+;; VOLUME VARS
+(defpoll volume_class :interval "1s" "scripts/getVolume class")
+(defpoll volume :interval "1s" "scripts/getVolume percentage")
+(defpoll vol :interval "1s" "scripts/getVolume vol")
+(defpoll volume_icon :interval "1s" "scripts/getVolume icon")
+(defvar toggle_mute "scripts/getVolume toggle_mute")
+(defpoll br_icon :interval "1s" "scripts/getBrightness icon")
+(defpoll br :interval "1s" "scripts/getBrightness br")
+
+;; WIFI VARS
+(defpoll wifi_icon :interval "1s" "scripts/getWifi icon")
+(defpoll wifi_class :interval "1s" "scripts/getWifi class")
+(defvar toggle_wifi "scripts/getWifi toggleWifi")
+
+;; BLUETOOTH VARS
+(defpoll bluetooth_icon :interval "1s" "scripts/getBluetooth icon")
+(defpoll bluetooth_class :interval "1s" "scripts/getBluetooth class")
+(defvar toggle_bluetooth "scripts/getBluetooth toggleBluetooth")
+
+;; AIRPLANE MODE VARS
+(defpoll airplane_mode_icon :interval "1s" "scripts/getAirplaneMode icon")
+(defpoll airplane_mode_class :interval "1s" "scripts/getAirplaneMode class")
+(defvar toggle_airplane_mode "scripts/getAirplaneMode toggleAirplane")
+
+;; NIGHT LIGHT VARS
+(defpoll night_light_icon :interval "1s" "scripts/getNightLight icon")
+(defpoll night_light_class :interval "1s" "scripts/getNightLight class")
+(defvar toggle_night_light "scripts/getNightLight toggleNightLight")
+
+;; SCREENSHOT VAR
+(defvar take_ss "scripts/getScreenShot &")
+
+;; WALLPAPER PATH
+(defpoll powermenubg_path :interval "1s" "scripts/getPowermenuBg")
+
+;; MEDIA VARS
+(defpoll media_class :interval "1s" "scripts/getMediaInfo class")
+(defpoll artUrl :interval "2s" "scripts/getMediaInfo getCoverArt")
+(defpoll play_pause_icon :interval "1s" "scripts/getMediaInfo play-pause-icon")
+(defpoll next_icon :interval "1s" "scripts/getMediaInfo next-icon")
+(defpoll previous_icon :interval "1s" "scripts/getMediaInfo previous-icon")
+(defpoll song_title :interval "1s" "scripts/getMediaInfo song_title")
+(defpoll song_artist :interval "1s" "scripts/getMediaInfo song_artist")
+(defvar play_pause "scripts/getMediaInfo play_pause")
+(defvar previous "scripts/getMediaInfo previous")
+(defvar next "scripts/getMediaInfo next")

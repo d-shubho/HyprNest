@@ -1,0 +1,27 @@
+#!/bin/bash
+
+status=$(bluetoothctl show | grep 'Powered' | awk '{print $2}')
+status_airplane=$(rfkill | awk '{print $4}' | grep "unblocked") # toggleBluetooth should not work when airplane mode is turned on
+
+if [[ $status == "yes" ]]; then
+	icon="󰂯"
+	class="bluetooth-on"
+else
+	icon="󰂲"
+	class="bluetooth-off"
+fi
+
+function toggleBluetooth() {
+	[[ $status == "yes" ]] && bluetoothctl power off || bluetoothctl power on
+}
+if [[ $1 == "icon" ]]; then
+	echo $icon
+fi
+
+if [[ $1 == "class" ]]; then
+	echo $class
+fi
+
+if [[ $1 == "toggleBluetooth" ]] && [[ $status_airplane ]]; then
+	toggleBluetooth
+fi

@@ -1,0 +1,9 @@
+// dark-decay
+
+*{
+  bg: #101419;
+  bg-alt: #1f2328;
+  fg: #dee1e6;
+
+  background-color: @bg;
+}

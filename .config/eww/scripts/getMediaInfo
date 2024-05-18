@@ -1,0 +1,85 @@
+#!/bin/bash
+
+status="$(playerctl -p spotify,vlc status 2>/dev/null)"
+song_title="$(playerctl -p spotify,vlc metadata title 2>/dev/null)"
+song_artist="$(playerctl -p spotify,vlc metadata artist 2>/dev/null)"
+
+if [[ -z $status ]]; then
+	class="no-media"
+fi
+
+getCoverArt() {
+	eww_cache="$HOME/.cache/eww"
+	cover_art="$eww_cache/cover.png"
+
+	if [[ ! -d $eww_cache ]]; then
+		mkdir -p $eww_cache
+	fi
+
+	spotify_cover_art="$(playerctl -p spotify metadata mpris:artUrl 2>/dev/null)"
+	vlc_cover_art="$(playerctl -p vlc metadata mpris:artUrl 2>/dev/null)"
+
+	if [[ -z $status ]]; then
+		cp ~/.config/eww/assets/no_music.png $cover_art
+	elif [[ $spotify_cover_art ]]; then
+		curl -s "$spotify_cover_art" >$cover_art
+	elif [[ $vlc_cover_art ]]; then
+		curl -s "$vlc_cover_art" >$cover_art
+	fi
+
+	echo $cover_art
+}
+
+if [[ $1 == "class" ]]; then
+	echo $class
+fi
+
+if [[ $status == "Playing" ]]; then
+	play_pause_icon=""
+else
+	play_pause_icon=""
+fi
+
+if [[ $1 == "play-pause-icon" ]]; then
+	echo $play_pause_icon
+fi
+
+if [[ $1 == "next-icon" ]]; then
+	echo "󰙢"
+fi
+
+if [[ $1 == "previous-icon" ]]; then
+	echo "󰙤"
+fi
+
+if [[ $1 == "song_title" ]]; then
+	if [[ -z $song_title ]]; then
+		echo "------------"
+	else
+		echo $song_title
+	fi
+fi
+
+if [[ $1 == "song_artist" ]]; then
+	if [[ -z $song_artist ]]; then
+		echo "------"
+	else
+		echo $song_artist
+	fi
+fi
+
+if [[ $1 == "getCoverArt" ]]; then
+	getCoverArt
+fi
+
+if [[ $1 == "play_pause" ]]; then
+	playerctl -p "spotify,vlc" play-pause 2>/dev/null
+fi
+
+if [[ $1 == "previous" ]]; then
+	playerctl -p "spotify,vlc" previous 2>/dev/null
+fi
+
+if [[ $1 == "next" ]]; then
+	playerctl -p "spotify,vlc" next 2>/dev/null
+fi

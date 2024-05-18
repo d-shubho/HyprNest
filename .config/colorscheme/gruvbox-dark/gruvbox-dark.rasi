@@ -1,0 +1,9 @@
+//  gruvbox-dark
+
+*{
+  bg: #1d2021;
+  bg-alt: #363836;
+  fg: #fbf1c7;
+
+  background-color: @bg;
+}

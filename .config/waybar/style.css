@@ -1,0 +1,173 @@
+@import "../colorscheme/current-colorscheme/current-colorscheme.css";
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "OpenDyslexic Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0); 
+}
+
+tooltip {
+    background: @bg;
+    border-radius: 6px;
+}
+
+#workspaces button {
+    margin: 3px;
+}
+
+#workspaces button.active {
+    background: @color11;
+    color: @bg;
+    border-radius: 20px;
+    box-shadow: 0 0 1px @color12,
+    0 0 5px @color12,
+    0 0 5px @color12;
+}
+
+#workspaces button.urgent {
+    background: @color1;
+    color: @bg;
+    border-radius: 20px;
+    box-shadow: 0 0 1px @color1,
+    0 0 5px @color1,
+    0 0 5px @color1;
+}
+
+
+
+#workspaces button:hover {
+    color: @fg;
+    border-radius: 20px;
+    font-size: 6px;
+}
+
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#bluetooth,
+#network,
+#workspaces,
+#custom-separator,
+#backlight,
+#custom-updates,
+#custom-control-center,
+#custom-launcher,
+#image{
+    background: @bg;
+    color: @fg;
+    border-radius: 6px;
+    padding: 0px 8px 0px 8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#workspaces {
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#custom-updates {
+    color: @color9;
+    border-right: 0px;
+    border-radius: 6px 0px 0px 6px;
+}
+
+#custom-separator, #custom-control-center {
+    font-size: 16px;
+    color: @fg;
+    border-radius: 0px;
+    border-width: 2px 0px 2px 0px;
+}
+
+#custom-launcher {
+  color: @color12;
+  border-radius: 6px;
+  margin:2px;
+  padding: 0 15px 0 15px;
+}
+
+#window {
+    margin-left: 20px;
+    margin-right: 60px;
+}
+
+#clock {
+    color: @fg;
+    margin-left: 10px;
+}
+
+#bluetooth{
+    color: @color7;
+    border-radius: 0px;
+    border-width: 2px 0px 2px 0px;
+}
+
+#network {
+    color: @color12;
+    border-radius: 0px;
+    border-width: 2px 0px 2px 0px;
+}
+
+#backlight {
+    color: @color5;
+    border-radius: 0px;
+    border-width: 2px 0px 2px 0px;
+}
+
+#pulseaudio {
+    color: @color3;
+    border-radius: 0px;
+    border-width: 2px 0px 2px 0px;
+}
+
+@keyframes blink {
+  to {
+    color: @bg;
+  }
+}
+
+#battery {
+    border-radius: 0px;
+    border-left: 0px;
+}
+
+#battery.good{
+  color: @color11;
+}
+
+#battery.warning{
+  color: @color5;
+  animation-name: blink;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+}
+
+#battery.critical{
+  color: @color1;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+}
+
+#battery.charging, #battery.plugged{
+  color: @color3;
+  animation-name: blink;
+  animation-duration: 2s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+}
+
+#image {
+  color: @color2;
+  padding: 4px 6px 4px 0;
+  border-radius: 0 6px 6px 0;
+}

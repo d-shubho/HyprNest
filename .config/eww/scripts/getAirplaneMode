@@ -1,0 +1,23 @@
+#!/bin/bash
+
+status=$(rfkill | awk '{print $4}' | grep "unblocked")
+# empty string  = on
+if [[ $status ]]; then
+	icon="󰀞"
+	class="airplane-mode-off"
+else
+	icon="󰀝"
+	class="airplane-mode-on"
+fi
+
+function toggleAirplane() {
+	[[ -z "$status" ]] && rfkill unblock all || rfkill block all
+}
+
+if [[ $1 == "icon" ]]; then
+	echo $icon
+elif [[ $1 == "class" ]]; then
+	echo $class
+elif [[ $1 == "toggleAirplane" ]]; then
+	toggleAirplane
+fi

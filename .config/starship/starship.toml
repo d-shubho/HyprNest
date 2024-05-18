@@ -1,0 +1,81 @@
+add_newline = true
+
+format = """
+$hostname\
+$directory\
+$c\
+${custom.cpp}\
+$nodejs\
+$rust\
+$lua\
+$python\
+$java\
+$fill\
+$username\
+$git_branch\
+$git_status\
+$line_break\
+$character
+"""
+
+[username]
+format = '[](fg:bright-cyan)[$user]($style)[](fg:bright-cyan)'
+style_user = 'bold italic fg:black bg:bright-cyan'
+disabled = false
+show_always = true
+
+[character]
+success_symbol = '[ ](bold green)'
+error_symbol = '[ ](bold red)'
+vimcmd_symbol = '[](bold green) '
+
+[fill]
+symbol = ' '
+
+[package]
+disabled = true
+
+[directory]
+format = '[](fg:yellow)[$path]($style)[](fg:yellow)[$read_only](bold fg:red) '
+style = 'bold fg:black bg:yellow'
+read_only = '  '
+
+[git_branch]
+always_show_remote = true
+format = ' [](fg:bright-purple)[ $symbol $branch ]($style)[](fg:bright-purple)'
+style = 'bold bg:bright-purple fg:black'
+symbol = ''
+
+[git_status]
+format = '([$conflicted$staged$untracked$modified]($style))'
+staged = '[  ](green)'
+untracked = '[  ](red)'
+modified = '[  ](yellow)'
+conflicted = '[ ](cyan)'
+
+[nodejs]
+format = '[](fg:bright-yellow)[$symbol](bg:bright-yellow fg:black)[ ](fg:bright-yellow)'
+symbol = ' 󰎙 '
+
+[rust]
+format = '[](fg:bright-red)[$symbol](bg:bright-red fg:black)[ ](fg:bright-red)'
+detect_files = ['.rs']
+symbol = ' 󱘗 '
+
+[lua]
+format = '[](fg:bright-green)[$symbol](bg:bright-green fg:black)[ ](fg:bright-green)'
+symbol = ' 󰢱 '
+
+[python]
+format = '[](fg:blue)[$symbol$virtualenv](bold bg:blue fg:black)[ ](fg:blue)'
+symbol = ' 󰌠 '
+
+[custom.cpp]
+format = '[](fg:bright-blue)[$symbol](bg:bright-blue fg:black)[ ](fg:bright-blue)'
+detect_extensions = ['cpp']
+symbol = " 󰙲  "
+style = 'bold fg:navy'
+
+[java]
+format = '[](fg:red)[$symbol](bg:red fg:black)[ ](fg:red)'
+symbol = '  '

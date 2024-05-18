@@ -1,0 +1,14 @@
+#!/bin/bash
+eww="$HOME/.local/bin/eww"
+
+if [[ $1 == "control-center" ]]; then
+  $eww close control-center || $eww open control-center
+fi
+
+if [[ $1 == "date" ]]; then
+  $eww close date || $eww open date
+fi
+
+if [[ $1 == "powermenu" ]]; then
+  $eww close powermenu || $eww open powermenu
+fi

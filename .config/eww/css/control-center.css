@@ -1,0 +1,290 @@
+*{
+  background : @bg;
+}
+
+window {
+  background: rgba(0, 0, 0, 0);
+}
+
+.control-center-layout{
+  border-radius: 15px;
+  border: 1px solid white;
+}
+
+
+/* USER */
+.user {
+  margin: 20px;
+  padding: 10px;
+}
+
+.user, .buttons, .sliders, .sys-res-layout, .media-layout {
+  border-radius: 40px;
+  border-width: 1px 1px 6px 1px;
+  border-color: @bg-alt;
+  box-shadow: 0px 0px 15px black;
+  border-style:solid;
+}
+
+.profile-info {
+  margin: 10px;
+}
+.avatar-img {
+  padding: 18px;
+  margin: 0;
+  background: none;
+}
+
+.hello{
+  font-family: "Source Han Sans JP Bold";
+  font-size: 30px;
+  color: @color3;
+  margin: 0px 15px 12px -15px; 
+}
+
+.username{
+  font-family: "JetBrainsMono NF";
+  font-size: 20px;
+  color: @color3;
+  margin: 0px 0px 10px 0px; 
+}
+
+.uptime{
+  font: 15px "JetBrainsMono NF";
+  font-weight : bold;
+  color: @color12;
+  border-radius: 18px;
+  border: 1px solid @color12;
+  border-bottom-width: 6px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  box-shadow: 0 0 15px black;
+  padding: 8px;
+  margin: 20px 20px 20px -15px;
+}
+
+
+/* CONTROLS */
+slider{
+  all: unset;
+}
+
+.sliders{
+  margin: 10px 10px 10px 20px;
+  padding: 10px;
+}
+
+.brightness-slider, .volume-slider, trough {
+  all: unset;
+	background-color: @bg-alt;
+	border-radius: 16px;
+	min-height: 140px;
+}
+
+.brightness-slider, .volume-slider, highlight {
+	all: unset;
+  margin: 0;
+	border-radius: 30px;
+  padding: 10px;
+  margin : -2;
+}
+
+.volume-slider highlight {
+	background: linear-gradient(to top, @color11 30%, @color12 50%, @color4 100%);
+}
+
+.brightness-slider highlight{
+	background: linear-gradient(to top, @color5 30%, @color6 50%, @color2 100%);
+}
+
+.vol-label{
+  all:unset;
+  font-size: 16px;
+  font-family: "JetBrainsMono NF";
+  color: @bg;
+  padding:8px;
+}
+
+.br-label{
+  all: unset;
+  font-size: 16px;
+  font-family: "JetBrainsMono NF";
+  color: @bg;
+}
+
+.buttons{
+  padding: 20px;
+  margin: 10px 20px 10px 10px;
+}
+
+.wifi, .bluetooth, .airplane-mode, .volume, .night-light, .screenshot {
+  min-width: 100px;
+}
+
+.switch{
+  all: unset;
+  border-radius: 5px 0px 0px 5px;
+  margin: 10px 0px 10px 5px;
+  background: @bg-alt;
+}
+
+.options{
+  all: unset;
+  border-left: 2px solid @bg;
+  border-radius: 0px 5px 5px 0px;
+  margin: 10px 5px 10px 0px;
+  background: @bg-alt;
+
+}
+
+.switch-label {
+  all:unset;
+  font: 25 "JetBrainsMono NF";
+}
+
+.options-label{
+  all: unset;
+  font: 18 "JetBrainsMono NF";
+}
+
+.airplane-mode-off, .airplane-mode-on, .night-light-off, .night-light-on, .screenshot-button {
+  border-radius: 5px;
+  margin: 10px 5px 10px 5px;
+}
+
+.wifi-on,  .bluetooth-on{
+  background: @color11;
+  color: @bg;
+}
+
+.airplane-mode-on, .muted{
+  background: @color2;
+  color: @bg;
+}
+
+.night-light-on{
+  background: @color6;
+  color: @bg;
+}
+
+.switch:hover, .options:hover{
+  background:@color8;
+  color: @bg;
+}
+
+/* Fixing mis-alignment of nerdfont icons*/
+.wifi-on, .wifi-off{
+  padding: 0 6px 0 0 ;
+}
+
+.airplane-mode-off{
+  padding:2px 5px 0 0 ;
+}
+
+.airplane-mode-on{
+  padding:2px 3px 0 0 ;
+}
+
+.night-light-on{
+  padding: 0 0 0 7px ;
+}
+
+.night-light-off{
+  padding: 3px 0 0 14px;
+}
+
+.screenshot-button{
+  padding: 3px 0 0 6px;
+}
+
+.options{
+  padding: 0 0 0 2px;
+}
+
+/*  SYSTEM RESOURCES */
+.sys-res-layout{
+  padding: 20px;
+  margin: 20px 20px 10px 20px;
+}
+
+.cpu-usage{
+  color : @color4;
+  background : @bg-alt;
+}
+
+.memory-usage{
+  color: @color10;
+  background : @bg-alt;
+}
+
+.disk-usage{
+  color: @color8;
+  background : @bg-alt;
+}
+
+.resource_text{
+  font: 15px "JetBrainsMono NF";
+  text-decoration: underline;
+  font-weight : bold;
+  margin: 40px;
+}
+
+
+/* MEDIA */
+.media-layout{
+  margin: 20px;
+  padding: 20;
+}
+
+.media-info{
+  background: none;
+  margin: 20px;
+}
+
+.album-cover{
+  margin: 10px;
+  padding: 0 0 0 0;
+  background: @bg-alt;
+}
+
+.song-artist-label, .song-title-label, .media-info {
+  font: 18px "JetBrainsMono NF";
+}
+
+.media-info {
+  font: 30px "JetBrainsMono NF";
+}
+
+.song-title, .song-artist, .media-buttons {
+  padding: 0 25px 0 0;
+}
+
+.play_pause_icon {
+  all: unset;
+  font-size: 50px;
+  color : @color11;
+}
+
+.previous_icon, .next_icon{
+  all: unset;
+  color: @color9;
+}
+
+.song-title-label, .song-artist-label{
+  color: @color3;
+}
+
+.song-title-label {
+  margin: 15 0 -5 0;
+  border-top: 2px solid @color3; 
+}
+
+.song-artist-label{
+  margin: 0 0 10 0;
+  border-bottom: 2px solid @color3; 
+}
+
+.no-media{
+  color: @bg-alt;
+}
+
