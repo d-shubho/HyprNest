@@ -45,4 +45,4 @@ alias zrc="$EDITOR $HOME/.zshrc"
 eval $(thefuck --alias)
 eval "$(starship init zsh)"
 
-fastfetch --logo-type kitty --logo ~/Pictures/fetch-images/kudo-shinichi.png
+fastfetch --logo-type kitty --logo ~/.config/fastfetch/fetch-images/kudo-shinichi.png
