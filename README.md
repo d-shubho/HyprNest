@@ -13,3 +13,10 @@
 + Browser🌐 : [Firefox](https://www.mozilla.org/en-US/firefox/new/).
 + Audio Visualiser🎵 : [cava](https://github.com/karlstav/cava).
 + File Manager📂 : [Thunar](https://docs.xfce.org/xfce/thunar/start).
+
+### Colorschemes:
+![colorschemes](./Pictures/assets/colorschemes.gif)
+
+### To-Do:
+- [ ] **Update Readme**
+- [ ] **Make a install script.**

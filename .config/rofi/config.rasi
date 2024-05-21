@@ -1,0 +1,105 @@
+configuration {
+  display-drun: " Search Apps ";
+  display-run: "  Run";
+  display-window: " Windows ";
+  drun-display-format: "{name}";
+  font: "VictorMono Nerd Font Bold 14";
+  show-icons : true;
+  icon-theme : "Tela Dark";
+  modi: "window,drun,run";
+}
+
+@theme "/dev/null"
+@import "../colorscheme/current-colorscheme/current-colorscheme.rasi" 
+window {
+  width: 30%;
+}
+
+element {
+  padding: 8;
+  border-radius: 6;
+  text-color:  @fg;
+}
+
+element selected {
+  background-color: @fg;
+  text-color: @bg;
+}
+
+element normal.urgent {
+  background-color: @urgent;
+  text-color: @bg;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 24;
+  background-color: inherit;
+}
+
+entry {
+  border: 3;
+  border-color: @bg-alt;
+  border-radius: 6;
+  padding: 8;
+  margin: 0 0 0 16;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+  padding:10;
+}
+
+listview {
+  padding: 12;
+  background-color: @bg;
+  columns: 2;
+  lines: 8;
+  scrollbar: true;
+}
+
+#scrollbar {
+  handle-color: @fg;
+  padding: 5px;
+}
+window{
+   background-color: @bg-alt;
+   border-radius: 20;
+}
+mainbox {
+  background-color: @bg;
+  border: 4;
+  border-radius: 15;
+  border-color: @fg;
+  children: [inputbar, listview, mode-switcher];
+}
+
+button {
+  margin: 8;
+  border-radius: 6;
+  background-color: @fg;
+  text-color: @bg;
+  padding: 2;
+}
+
+button selected{
+  background-color: @fg-alt;
+}
+
+prompt {
+  background-color: @bg-alt;
+  border-radius: 6;
+  enabled: true;
+  padding: 12;
+  text-color: @fg;
+}
+
+mode-switcher{
+  margin: 10;
+}
