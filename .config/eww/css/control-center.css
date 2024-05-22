@@ -126,6 +126,7 @@ slider{
   border-radius: 5px 0px 0px 5px;
   margin: 10px 0px 10px 5px;
   background: @bg-alt;
+  color: @fg;
 }
 
 .options{
@@ -134,7 +135,7 @@ slider{
   border-radius: 0px 5px 5px 0px;
   margin: 10px 5px 10px 0px;
   background: @bg-alt;
-
+  color: @fg;
 }
 
 .switch-label {
@@ -172,17 +173,19 @@ slider{
   color: @bg;
 }
 
+
+
 /* Fixing mis-alignment of nerdfont icons*/
 .wifi-on, .wifi-off{
   padding: 0 6px 0 0 ;
 }
 
 .airplane-mode-off{
-  padding:2px 5px 0 0 ;
+  padding: 2px 5px 0 0 ;
 }
 
 .airplane-mode-on{
-  padding:2px 3px 0 0 ;
+  padding :2px 3px 0 0 ;
 }
 
 .night-light-on{

@@ -8,7 +8,7 @@ fi
 
 eww_config_path="$HOME/.config/eww"
 wall_path="$(swww query | awk -F 'image: ' '{print $2}')"            # query current wallpaper with swww
-powermenubg_log_file="$eww_cache/powermenubg_log.txt"                   # log file to store last used path of background for powermenu
+powermenubg_log_file="$eww_cache/powermenubg_log.txt"                # log file to store last used path of background for powermenu
 fallback_wall_path="$eww_config_path/assets/fallbackPowermenuBg.png" # fallback image if no wallpaper set
 
 [[ -z "$wall_path" ]] && cp "$fallback_wall_path" "$eww_powermenu_bg"

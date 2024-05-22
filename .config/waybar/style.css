@@ -9,7 +9,7 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0); 
+    background-color: rgba(0, 0, 0, 0);
 }
 
 tooltip {
@@ -18,16 +18,8 @@ tooltip {
 }
 
 #workspaces button {
-    margin: 3px;
-}
-
-#workspaces button.active {
-    background: @color11;
-    color: @bg;
-    border-radius: 20px;
-    box-shadow: 0 0 1px @color12,
-    0 0 5px @color12,
-    0 0 5px @color12;
+    margin: 6px;
+    color: @fg;
 }
 
 #workspaces button.urgent {
@@ -39,14 +31,23 @@ tooltip {
     0 0 5px @color1;
 }
 
-
-
 #workspaces button:hover {
+    box-shadow: none;
+    text-shadow: none;
     color: @fg;
+    background: @bg-alt;
     border-radius: 20px;
     font-size: 6px;
 }
 
+#workspaces button.active {
+    background: @color11;
+    color: @bg;
+    border-radius: 20px;
+    box-shadow: 0 0 1px @color12,
+    0 0 5px @color12,
+    0 0 5px @color12;
+}
 #window,
 #clock,
 #battery,

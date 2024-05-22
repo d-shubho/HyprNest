@@ -33,7 +33,7 @@
 
     "clock": {
         "on-click": "sleep 0.1 && $HOME/.config/waybar/script date",
-        "format": "{:%R  |  %d/%m}",
+        "format": "{:%R   %d/%m 󰥔}",
     },
 
      "hyprland/window": {
@@ -64,7 +64,7 @@
     },
 
     "custom/separator": {
-        "format": "|",
+        "format": "",
         "interval": "once",
         "tooltip": false
     },
