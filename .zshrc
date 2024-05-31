@@ -16,9 +16,6 @@ for dir in $HOME/.local/share/zsh-plugins/*/; do
     done
 done
 
-# NVM
-source /usr/share/nvm/init-nvm.sh
-
 # vim mode configurations
 bindkey -v
 export KEYTIMEOUT=1
@@ -40,9 +37,9 @@ alias la='lsd -la --group-directories-first'
 alias tree='lsd -l --group-directories-first --tree --depth=2'
 alias wifi="nmcli dev wifi"
 alias diff="kitty +kitten diff"
-alias zrc="$EDITOR $HOME/.zshrc"
+alias zrc="$EDITOR $ZSHRC"
 
 eval $(thefuck --alias)
 eval "$(starship init zsh)"
 
-fastfetch --logo-type kitty --logo ~/.config/fastfetch/fetch-images/kudo-shinichi.png
+fastfetch --kitty-direct ~/.config/fastfetch/fetch-images/kudo-shinichi.png

@@ -22,7 +22,7 @@
 ;; USER_INFO
 (defwidget user []
     (box :class "user" :space-evenly false :orientation "h" :spacing 20
-        (image :class "avatar-img" :path "./assets/pfp.png" :image-width 140 :image-height 140)
+        (image :class "avatar-img" :path "../pfp/pfp.png" :image-width 140 :image-height 140)
         (box :class "profile-info" :orientation "v" :spacing 10
             (box  :class "hello-user" :orientation "h" :space-evenly true 
                 (label :class "hello" :yalign 1 :xalign 0  :text "おかえり")

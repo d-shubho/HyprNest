@@ -39,8 +39,34 @@ check_aur_helper() {
     fi
 }
 
+# Function to check and enable NetworkManager
+check_network_manager() {
+    if ! systemctl is-enabled --quiet NetworkManager; then
+        echo -e "${CYAN}${BOLD}NetworkManager is not enabled. Installing and enabling NetworkManager...${RESET}"
+        sudo pacman -S --noconfirm networkmanager
+        sudo systemctl enable NetworkManager
+        sudo systemctl start NetworkManager
+        check_status "NetworkManager installed and enabled." "Failed to install or enable NetworkManager."
+    else
+        echo -e "${GREEN}${BOLD}NetworkManager is already enabled.${RESET}"
+    fi
+}
+
+# Function to check and enable Bluetooth service
+check_bluetooth() {
+    if ! systemctl is-enabled --quiet bluetooth; then
+        echo -e "${CYAN}${BOLD}Bluetooth service is not enabled. Installing and enabling Bluetooth service...${RESET}"
+        sudo pacman -S --noconfirm bluez bluez-utils
+        sudo systemctl enable bluetooth
+        sudo systemctl start bluetooth
+        check_status "Bluetooth service installed and enabled." "Failed to install or enable Bluetooth service."
+    else
+        echo -e "${GREEN}${BOLD}Bluetooth service is already enabled.${RESET}"
+    fi
+}
+
 # Warning message
-echo -e "${RED}${BOLD}WARNING:${RESET}This script is going to make changes on your system!!! Don't blindly run this script without knowing what it entails!!"
+echo -e "${RED}${BOLD}WARNING:${RESET}Don't blindly run this script without knowing what it entails! This script is going to make changes on your system, before proceeding further, make sure you already backup up your current system."
 echo -e "${CYAN}${BOLD}Please read and understand the script before proceeding.${RESET}"
 read -rp "$(echo -e "${CYAN}${BOLD}Do you want to continue? (yes/no):${RESET} ")" choice
 if [[ ! $choice =~ ^[Yy](es)?$ ]]; then
@@ -84,6 +110,12 @@ else
     check_status "$aur_helper is installed. Proceeding further..." "Failed to install $aur_helper."
 fi
 
+# Check and enable NetworkManager
+check_network_manager
+
+# Check and enable Bluetooth service
+check_bluetooth
+
 echo -e "Updating the system..."
 $aur_helper -Syu --noconfirm
 
@@ -95,6 +127,20 @@ $aur_helper -S --noconfirm zsh
 echo -e "${GREEN}${BOLD}Changing default shell to Zsh...${RESET}"
 chsh -s /bin/zsh
 touch ~/.zshrc
+
+# Install Zsh plugins
+ZSH_PLUGIN_DIR="$HOME/.local/share/zsh-plugins"
+echo -e "${GREEN}${BOLD}Installing Zsh plugins: zsh-syntax-highlighting, zsh-autosuggestions, supercharge...${RESET}"
+mkdir -p "$ZSH_PLUGIN_DIR"
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting"
+check_status "zsh-syntax-highlighting installed." "Failed to install zsh-syntax-highlighting."
+
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_PLUGIN_DIR/zsh-autosuggestions"
+check_status "zsh-autosuggestions installed." "Failed to install zsh-autosuggestions."
+
+git clone https://github.com/zap-zsh/supercharge.git "$ZSH_PLUGIN_DIR/supercharge"
+check_status "supercharge installed." "Failed to install supercharge."
 
 # List of packages to install
 packages=(
@@ -126,13 +172,10 @@ packages=(
     slurp
     swayimg
     gtk3
-    qt5-base
-    qt6-base
     libdbusmenu-glib
     libdbusmenu-gtk3
     gtk-layer-shell
     dunst
-    gtk3
     playerctl
     ffmpeg
     vlc
@@ -151,7 +194,6 @@ packages=(
     otf-opendyslexic-nerd
     nwg-look
     gradience
-    catppuccin-gtk-theme-mocha
 )
 
 # Install the packages
@@ -176,5 +218,10 @@ cp eww $HOME/.local/bin
 cd $HOME
 echo -e "${GREEN}${BOLD}Eww widgets installed successfully.${RESET}"
 
+git clone https://github/com/d-shubh./HyprNest.git
+cd HyprNest
+cp -r .config/* $HOME/.config/
+cp -r Pictures $HOME
+cp .zshrc $HOME
 
-echo -e "${GREEN}${BOLD}Installation complete :-)\n Please reboot your system ${RESET}"
+echo -e "${GREEN}${BOLD}Installation complete :-)\n Please reboot your system. ${RESET}"

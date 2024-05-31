@@ -12,7 +12,7 @@
       (box :class "powermenu-layout" :space-evenly false :orientation "v"
         (box :class "background-img" :style 'background-image: url("${powermenubg_path}")')
         (label :class "bye" :text "またあとで")
-        (image :class "pfp" :path "./assets/pfp.png" :image-width 140 :image-height 140 )
+        (image :class "pfp" :path "../pfp/pfp.png" :image-width 140 :image-height 140 )
         (label :class "powermenu-uptime"  :text " uptime: ${uptime}")
         (box :class "powermenu-buttons" :orientation "h" :space-evenly true :spacing 10
           (box :class "logout"
