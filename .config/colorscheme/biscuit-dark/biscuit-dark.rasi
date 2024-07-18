@@ -1,0 +1,11 @@
+// biscuit-dark
+
+*{
+  bg: #181515;
+  bg-alt: #221E1E;
+  fg: #978787;
+  fg-alt: #517894;
+  urgent: #CA3F3F;
+
+  background-color: @bg;
+}
