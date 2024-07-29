@@ -44,7 +44,7 @@ jq ripgrep alsa-utils sof-firmware pipewire wireplumber pipewire-alsa pipewire-p
 + [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 + [supercharge](https://github.com/zap-zsh/supercharge)
   
-```Note: (zsh-plugin installation is optional; if you don't want to: just remove the lines that source those plugins in the ~/.zshrc)```
+```Note: (zsh-plugin installation is optional; if you don't want them: just remove the lines that source those plugins in the ~/.zshrc)```
 
 5. Clone this repo and copy everything under ```.config``` and ```Pictures```(optional) directory to your .config and Picures directory:
 
@@ -74,11 +74,17 @@ chmod +x install.sh
 + Follow On-Screen Prompts: The script may prompt you for confirmation or input during the installation process. Read and follow the prompts carefully.
 + Reboot your system after the script finishes its execution and... you are done ;-)
 
+
+## Future changes:
+- [ ] Replace ```eww``` with ```ags``` (eww caused me issues in some ways it shouldn't T_T )
+- [ ] same for ```waybar``` (so... less dependencies?)
+
 ### Side notes:
 + You might also want to configure the gtk theme using:
   + [nwg-look](https://github.com/nwg-piotr/nwg-look): a GTK3 settings editor, designed to work properly in wlroots-based Wayland environment.
   + [Gradience](https://github.com/GradienceTeam/Gradience?tab=readme-ov-file): a tool for customizing Libadwaita applications and the adw-gtk3 theme.
 + Gtk theme used in the video showcase is [decay-gtk](https://github.com/decaycs/decay-gtk).
+
 ### ✨ Special thanks to:
 +  [@vaxerski](https://github.com/vaxerski) for creating [Hyprland](https://github.com/hyprwm/Hyprland).
 +  [r/unixporn](https://www.reddit.com/r/unixporn/), got inspiration from a bunch of rices posted there!!!
